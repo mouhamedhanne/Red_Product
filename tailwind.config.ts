@@ -7,7 +7,11 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "custom-bg": "url('/bg-login.svg')",
+      },
+    },
   },
   plugins: [],
 };

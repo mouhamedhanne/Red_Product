@@ -1,6 +1,30 @@
+"use client";
+
 import Link from "next/link";
+import { register } from "@/services/auth";
+import { useState } from "react";
+import { error } from "console";
+
+interface InscriptionProps {
+  error?: any;
+}
 
 export default function page() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await register({ email, password, role: "user" });
+      // Rediriger vers la page de connexion ou une autre action
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="bg-custom-bg bg-cover bg-center h-screen">
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -9,39 +33,53 @@ export default function page() {
             red product
           </h1>
           <div className=" bg-white px-12 py-12 rounded-[8px]">
-            <form action="" className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <h3>Inscrivez-vous en tant que Admin</h3>
               <div className="block">
-                <label htmlFor="" className="block">
+                <label htmlFor="username" className="block">
                   Nom
                 </label>
                 <input
                   type="text"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                   className="border border-gray-500 rounded-[5px] py-1"
                 />
               </div>
               <div className="block">
-                <label htmlFor="" className="block">
+                <label htmlFor="email" className="block">
                   Email
                 </label>
                 <input
                   type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   className="border border-gray-500 rounded-[5px] py-1"
                 />
               </div>
               <div>
-                <label htmlFor="">Mot de passe</label>
+                <label htmlFor="password">Mot de passe</label>
                 <input
                   type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   className="border border-gray-500 rounded-[5px] py-1"
                 />
               </div>
 
+              {error && <p className="text-red-500 text-center">{error}</p>}
+
               <div className="flex justify-center mt-2">
-                <button className="bg-[#45484B] font-bold text-white px-[5.8rem] py-2">
+                <button
+                  type="submit"
+                  className="bg-[#45484B] font-bold text-white px-[5.8rem] py-2"
+                >
                   Se Connecter
                 </button>
               </div>

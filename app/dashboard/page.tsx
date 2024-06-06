@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import Hero from "@/components/Hero-home";
 import Container from "@/components/Container";
 import CardContent from "@/components/CardContent";
 

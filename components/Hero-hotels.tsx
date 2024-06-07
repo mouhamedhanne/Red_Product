@@ -9,7 +9,7 @@ export default function Hero_Hotels() {
       </div>
       <div>
         <Link
-          href="/dashboard/add-new-hotel"
+          href="/dashboard/add-hotel"
           className="flex space-x-2 border-2 border-gray-400 py-2 px-4 rounded-lg"
         >
           <Plus className="" /> <span>Creer un nouveau hotel</span>
